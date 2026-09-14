@@ -75,11 +75,12 @@ class Buffer {
      * @return Const reference to the selected storage alternative.
      */
     template <typename T>
+    [[nodiscard]] T const& get_storage() const
         requires(
             std::same_as<T, DeviceBufferT> || std::same_as<T, HostBufferT>
             || std::same_as<T, DiskBufferT>
         )
-    [[nodiscard]] T const& get_storage() const {
+    {
         return std::get<T>(storage_);
     }
 
